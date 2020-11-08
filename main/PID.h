@@ -13,15 +13,17 @@ class axis {
     float inte = 0.0;
     float diff = 0.0;
     float PID_val = 0.0;
+    float target = 0.0;
+    float current = 0.0;
 
   public:
     axis(float kP, float kI, float kD);
     
-    void cal_err(float target, float current);
-    void cal_dt();
-    void cal_inte();
-    void cal_diff();
-    void cal_PID();
+    float cal_err(float target, float current);
+    float cal_dt();
+    float cal_inte();
+    float cal_diff();
+    float cal_PID();
     float get_PID();
     float get_kP();
     float get_kI();
@@ -29,6 +31,5 @@ class axis {
     float get_err();
     void set_const(float kP, float kI, float kD);
 };
-
 
 #endif
