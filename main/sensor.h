@@ -30,7 +30,7 @@ class balance {
 
     float press_buff[MOVAVG_SIZE];
     int press_avg_i = 0;
-    const float sea_press = 1014.0;
+    const float sea_press = 1030.4;
 
     MPU6050 mpu;
     MS561101BA baro = MS561101BA();
