@@ -14,6 +14,6 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   gy86.get_state();
-  Serial.println(gy86.get_alt());
+  Serial.println(gy86.get_angle_x());
     
 }

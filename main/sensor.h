@@ -26,7 +26,9 @@ class balance {
     
     float heading;
     float altitude, temperature, pressure;
-    
+
+    double angle_ax, angle_ay, angle_gx, angle_gy;
+    double angle_x, angle_y;
 
     float press_buff[MOVAVG_SIZE];
     int press_avg_i = 0;
@@ -58,6 +60,9 @@ class balance {
     float get_alt();
     float get_temp();
     float get_press();
+
+    double get_angle_x();
+    double get_angle_y();
     
 };
 #endif

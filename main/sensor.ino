@@ -108,6 +108,10 @@ void balance::init() {
     this -> press_buff[i] = p;
 
   }
+
+  this -> get_state();
+  this -> angle_x = this -> angle_ax;
+  this -> angle_y = this -> angle_ay;
 }
 
 void balance::get_state() {
@@ -125,20 +129,27 @@ void balance::get_state() {
   this -> heading = atan2(this -> my, this -> mx);
   if (this -> heading < 0) this -> heading += 2 * M_PI;
 
-  this -> heading *= (180/3.14);
-  
+  this -> heading *= (180 / PI);
+
   // 높이를 측정하여 altitude에 저장합니다.
   this -> altitude = this -> getAltitude();
 
-}
+  //angle_acc
+  this -> angle_ax = atan(this->ay / sqrt(pow(this -> ax, 2) + pow(this -> az, 2)))*(180/PI);
+  this -> angle_ay = atan(-this->ax / sqrt(pow(this -> ay, 2) + pow(this -> az, 2)))*(180/PI);
 
+  //filter
+
+  this -> angle_x = this -> angle_ax;
+  this -> angle_y = this -> angle_ay;
+}
 float balance::getAltitude() {
   float temp;
   temp = baro.getTemperature();
   if (temp) {
     this -> temperature = temp;
   }
-  delay(100);
+  //delay(100);
 
   this -> pressure = baro.getPressure();
 
@@ -165,46 +176,54 @@ float balance::getAvg(float * buff, int size) {
   return sum / size;
 }
 
-int16_t balance::get_ax(){
+int16_t balance::get_ax() {
   return this->ax;
 }
-int16_t balance::get_ay(){
+int16_t balance::get_ay() {
   return this->ay;
 }
-int16_t balance::get_az(){
+int16_t balance::get_az() {
   return this->az;
 }
 
-int16_t balance::get_gx(){
+int16_t balance::get_gx() {
   return this->gx;
 }
-int16_t balance::get_gy(){
+int16_t balance::get_gy() {
   return this->gy;
 }
-int16_t balance::get_gz(){
+int16_t balance::get_gz() {
   return this->gz;
 }
 
-int16_t balance::get_mx(){
+int16_t balance::get_mx() {
   return this->mx;
 }
-int16_t balance::get_my(){
+int16_t balance::get_my() {
   return this->my;
 }
-int16_t balance::get_mz(){
+int16_t balance::get_mz() {
   return this->mz;
 }
 
-float balance::get_head(){
+float balance::get_head() {
   return this->heading;
 }
 
-float balance::get_alt(){
+float balance::get_alt() {
   return this->altitude;
 }
-float balance::get_temp(){
+float balance::get_temp() {
   return this->temperature;
 }
-float balance::get_press(){
+float balance::get_press() {
   return this->pressure;
+}
+
+double balance::get_angle_x() {
+  return this->angle_x;
+}
+
+double balance::get_angle_y() {
+  return this->angle_y;
 }
