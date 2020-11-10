@@ -1,4 +1,4 @@
-#ifndef COMMUNICATION
-#define COMMUNICATION
+#ifndef COMMU
+#define COMMU
 
 #endif
