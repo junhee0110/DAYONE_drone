@@ -13,9 +13,7 @@ class motor_control {
     
   public:
     motor_control(int pin_num, int motor_mum, bool dir);
-    void cal_output(axis &one, axis &two);
-    void cal_output(axis &one, axis &two, axis &three);
-    void cal_output(axis &one, axis &two, axis &three, axis &four);
+    void cal_output(axis &x, axis &y);
     void output();
 };
 

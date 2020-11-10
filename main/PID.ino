@@ -9,9 +9,16 @@ axis::axis(float kP, float kI, float kD) {
   this -> kD = kD;
 }
 
-float axis::cal_err(float target, float current) {
+void axis::set_target(float target){
+  this->target = target;
+}
+void axis::set_current(float current){
+  this->current = current;
+}
+
+float axis::cal_err() {
   this -> e_tmp = this -> err;
-  this -> err = target - current;
+  this -> err = this -> target - this -> current;
 
 }
 
@@ -45,7 +52,7 @@ float axis::cal_diff() {
 }
 
 float axis::cal_PID() {
-  this-> PID_val = (this->kP) * (this->cal_err(this -> target, this-> current)) + (this->kI) * (this->cal_inte()) + (this->kD) * (this->cal_diff());
+  this-> PID_val = (this->kP) * (this->cal_err()) + (this->kI) * (this->cal_inte()) + (this->kD) * (this->cal_diff());
   return this -> PID_val;
 }
 

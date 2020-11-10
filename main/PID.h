@@ -18,8 +18,9 @@ class axis {
 
   public:
     axis(float kP, float kI, float kD);
-    
-    float cal_err(float target, float current);
+    void set_target(float target);
+    void set_current(float current);
+    float cal_err();
     float cal_dt();
     float cal_inte();
     float cal_diff();
