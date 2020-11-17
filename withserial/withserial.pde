@@ -1,3 +1,5 @@
+import processing.serial.*;
+
 PImage img;
 int a=360;
 int b=321;
@@ -10,7 +12,6 @@ int yp;
 int yn;//the four values of inclination. wanna go home...let me go home...
 
 
-import processing.serial. *;
 Serial myPort;
 
 /*----------------------------------------void setup-------------------*/
@@ -20,7 +21,7 @@ void setup(){
   img = loadImage("background.PNG");
   
   println("Available serial ports:");
-  println(Serial.list());
+  printArray(Serial.list());
 
  //port = new Serial(this, "COM17", 115200);
   myPort = new Serial(this, Serial.list()[2], 115200);
