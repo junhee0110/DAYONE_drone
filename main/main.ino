@@ -3,6 +3,8 @@
 #include "communication.h"
 #include "control.h"
 #include "sensor.h"
+#define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
+#define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
 
 balance gy86;
 
