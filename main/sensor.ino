@@ -1,30 +1,13 @@
 #include "config.h"
 #include "sensor.h"
-
-
 #include <I2Cdev.h>
-
+#define OUTPUT_READABLE_YAWPITCHROLL
 #include <MPU6050_6Axis_MotionApps20.h>
-
-
-
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
     #include "Wire.h"
 #endif
 
 MPU6050 mpu;
-
-
-
-
-
-
-
-
-// packet structure for InvenSense teapot demo
-uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
-
-
 
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
@@ -50,11 +33,12 @@ void balance::init() {
 
   // 시리얼 통신을 115200bps로 초기화합니다
   Serial.begin(115200);
-
+   while (!Serial);
   // I2C 버스에 연결되어 있는 기기들을 초기화합니다
   Serial.println(F("I2C 기기들 초기화 중..."));
   this -> mpu.initialize();
-
+  pinMode(INTERRUPT_PIN, INPUT);
+  
   // 연결을 검증합니다.
   Serial.println(F("기기 연결 시험 중..."));
   Serial.print(F("MPU6050 연결 "));
@@ -97,21 +81,21 @@ void balance::init() {
   
   this -> mpu.setI2CBypassEnabled(0);
   
-Serial.println(F("\nSend any character to begin DMP programming and demo: "));
+    Serial.println(F("\nSend any character to begin DMP programming and demo: "));
     while (Serial.available() && Serial.read()); // empty buffer
     while (!Serial.available());                 // wait for data
     while (Serial.available() && Serial.read()); // empty buffer again
   
-
    Serial.println(F("Initializing DMP..."));
-    this->devStatus =this->mpu.dmpInitialize();
+   this->devStatus =this->mpu.dmpInitialize();
+   
     mpu.setXGyroOffset(220);
     mpu.setYGyroOffset(76);
     mpu.setZGyroOffset(-85);
     mpu.setZAccelOffset(1788);
     if (devStatus == 0) {
         // Calibration Time: generate offsets and calibrate our MPU6050
-        (this->mpu).CalibrateAccel(6);
+        mpu.CalibrateAccel(6);
         mpu.CalibrateGyro(6);
         mpu.PrintActiveOffsets();
         // turn on the DMP, now that it's ready
@@ -226,11 +210,13 @@ void balance::get_state() {
             mpu.dmpGetQuaternion(&q, fifoBuffer);
             mpu.dmpGetGravity(&gravity, &q);
             mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-            Serial.print("ypr\t");
+            Serial.print("Yaw\t");
             Serial.print(ypr[0] * 180/M_PI);
             Serial.print("\t");
+            Serial.print("Pitch\t");
             Serial.print(ypr[1] * 180/M_PI);
             Serial.print("\t");
+            Serial.print("Roll\t");
             Serial.println(ypr[2] * 180/M_PI);
         #endif
 
@@ -373,6 +359,7 @@ float balance::get_head(){
 
 float balance::get_alt(){
   return this->altitude;
+  
 }
 float balance::get_temp(){
   return this->temperature;

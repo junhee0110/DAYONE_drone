@@ -1,6 +1,6 @@
 #ifndef SENSOR
 #define SENSOR
-
+#define OUTPUT_READABLE_YAWPITCHROLL
 #include <MS561101BA.h>
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h"
@@ -25,6 +25,12 @@ class balance {
     int16_t mx, my, mz;
    bool blinkState = false;
 
+float heading;
+    float altitude, temperature, pressure;
+
+    double angle_ax, angle_ay, angle_gx, angle_gy;
+    double angle_x, angle_y;
+    
 // MPU control/status vars
 bool dmpReady = false;  // set true if DMP init was successful
 uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
@@ -42,20 +48,24 @@ VectorFloat gravity;    // [x, y, z]            gravity vector
 float euler[3];         // [psi, theta, phi]    Euler angle container
 float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
+volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
 
-    float press_buff[MOVAVG_SIZE];
-    int press_avg_i = 0;
-    const float sea_press = 1030.4;
+// packet structure for InvenSense teapot demo
+uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
 
-    MPU6050 mpu;
-    MS561101BA baro = MS561101BA();
+   float press_buff[MOVAVG_SIZE];
+   int press_avg_i = 0;
+   const float sea_press = 1030.4;
 
-  public:
-    void init();
-    void get_state();
-    float getAltitude();
-    void pushAvg(float val);
-    float getAvg(float *buff, int size);
+   MPU6050 mpu;
+   MS561101BA baro = MS561101BA();
+
+public:
+   void init();
+   void get_state();
+   float getAltitude();
+   void pushAvg(float val);
+   float getAvg(float *buff, int size);
 
     int16_t get_ax();
     int16_t get_ay();

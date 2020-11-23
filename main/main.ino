@@ -16,6 +16,16 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   gy86.get_state();
-  Serial.println(gy86.get_alt());
+  Serial.print("높이\t");
+  Serial.print(gy86.get_alt());
+  Serial.print("m \n");
+  Serial.print("기온\t");
+  Serial.print(gy86.get_temp());
+  Serial.print("°C\n");
+  Serial.print("기압\t");
+  Serial.print(gy86.get_press());
+  Serial.print("\n\n");
+  
+
     
 }
