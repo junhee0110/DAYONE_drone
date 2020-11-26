@@ -24,7 +24,7 @@ class balance {
     int16_t gx, gy, gz;
     int16_t mx, my, mz;
    bool blinkState = false;
-
+   bool mpu_connection;
 float heading;
     float altitude, temperature, pressure;
 
