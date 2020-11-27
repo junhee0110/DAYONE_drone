@@ -2,30 +2,31 @@
 #include "PID.h"
 #include "communication.h"
 #include "control.h"
-#include "gy86.h"
+#include "sensor.h"
 #define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
 #define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
 
-gy86 gy86;
+gy86 GY86;
 
 void setup() {
   // put your setup code here, to run once:
-  gy86.init();
+  Serial.begin(115200); 
+  GY86.init();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  gy86.get_state();
+  GY86.get_state();
   Serial.print("yaw\t");
-  Serial.print(gy86.get_yaw());
+  Serial.print(GY86.get_yaw());
   Serial.print("pitch\t");
-  Serial.print(gy86.get_pitch());
+  Serial.print(GY86.get_pitch());
   Serial.print("roll\t");
-  Serial.print(gy86.get_roll());
+  Serial.print(GY86.get_roll());
   Serial.print("alt\t");
-  Serial.print(gy86.get_alt());
+  Serial.print(GY86.get_alt());
   Serial.print("head\t");
-  Serial.print(gy86.get_head());
+  Serial.println(GY86.get_head());
 
 
     

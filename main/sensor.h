@@ -1,7 +1,5 @@
-#ifndef GY86
-#define GY86
-
-#include "Arduino.h"
+#ifndef GY86_
+#define GY86_
 
 #include "MS561101BA.h"
 #include "MPU6050_6Axis_MotionApps20.h"
@@ -22,14 +20,14 @@
 
 #define INTERRUPT_PIN 2
 
-class gy86 :public MPU6050, public MS561101BA{
+class gy86 : public MPU6050, public MS561101BA {
 
-public:
+  public:
     //Common part
     gy86();//initialize
     void init();//Setup
     void get_state();//Update state
-    
+
     float get_yaw();
     float get_pitch();
     float get_roll();
@@ -43,7 +41,7 @@ public:
     //Gyro
     //EMPTY
 
-private:
+  private:
     float yaw, pitch, roll;
 
     bool blinkState = false;
@@ -51,7 +49,7 @@ private:
     float heading, yaw_base;
     float altitude, temperature, pressure;
 
-    
+
     // MPU control/status vars
     bool dmpReady = false;  // set true if DMP init was successful
     uint8_t mpuIntStatus;   // holds actual interrupt status byte from MPU
@@ -72,13 +70,11 @@ private:
     volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
 
     // packet structure for InvenSense teapot demo
-    uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
+    uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
 
     float press_buff[MOVAVG_SIZE];
     int press_avg_i = 0;
     const float sea_press = 1026.4;
-
-
 
 };
 
