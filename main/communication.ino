@@ -1,10 +1,7 @@
 #include "config.h"
 #include "communication.h"
-#include <SPI.h> 
-#include <nRF24L01.h>
-#include <RF24.h>
 
-RF24 radio(7, 8);     // SPI통신을 위한 (CE, CSN) 핀 선언
+
 
 void ComRX::init(){
   Serial.begin(9600);
@@ -38,4 +35,11 @@ void ComTX::TX(char txdata[]){
   radio.write(&txdata, sizeof(txdata)); // 위 문자를 문자 길이 만큼 송출함
   Serial.print(txdata);Serial.println(" 전송 ");
   }  
-     
+
+void ProSend::Send(int Prodata[]){                 
+  byte PCdata[9]={0};
+  for(int i=0;i<9;i++){
+    PCdata[i]=Prodata[i];
+    }
+  Serial.write(PCdata,9); 
+  }     
