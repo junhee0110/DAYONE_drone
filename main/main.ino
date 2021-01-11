@@ -16,18 +16,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  GY86.get_state();
-  Serial.print("yaw\t");
+  GY86.get_dmp();
+  GY86.get_heading();
   Serial.print(GY86.get_yaw());
-  Serial.print("pitch\t");
+  Serial.print("\t");
   Serial.print(GY86.get_pitch());
-  Serial.print("roll\t");
+  Serial.print("\t");
   Serial.print(GY86.get_roll());
-  Serial.print("alt\t");
-  Serial.print(GY86.get_alt());
-  Serial.print("head\t");
+  Serial.print("\t");
   Serial.println(GY86.get_head());
-
-
-    
 }
