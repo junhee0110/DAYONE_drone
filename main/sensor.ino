@@ -107,8 +107,10 @@ void gy86::get_heading(){
   if(heading < 0) heading += 2*M_PI;
 }
 
+
 float gy86::get_yaw(){
   return ypr[0];
+
 }
 
 float gy86::get_pitch(){
@@ -143,6 +145,7 @@ void gy86_2::init(){
   mpu.setXAccelOffset(1150);
   mpu.setYAccelOffset(-50);
   mpu.setZAccelOffset(1060);
+
 
    // make sure it worked (returns 0 if so)
   if (devStatus == 0) {
@@ -244,4 +247,47 @@ float gy86_2::get_roll(){
 
 float gy86_2::get_head(){
   return heading;
+=======
+int16_t balance::get_ax() {
+  return this->ax;
 }
+int16_t balance::get_ay() {
+  return this->ay;
+}
+int16_t balance::get_az() {
+  return this->az;
+}
+
+int16_t balance::get_gx() {
+  return this->gx;
+}
+int16_t balance::get_gy() {
+  return this->gy;
+}
+int16_t balance::get_gz() {
+  return this->gz;
+}
+
+int16_t balance::get_mx() {
+  return this->mx;
+}
+int16_t balance::get_my() {
+  return this->my;
+}
+int16_t balance::get_mz() {
+  return this->mz;
+}
+
+float balance::get_head() {
+  return this->heading;
+}
+
+float balance::get_alt() {
+  return this->altitude;
+}
+float balance::get_temp() {
+  return this->temperature;
+}
+float balance::get_press() {
+  return this->pressure;
+
