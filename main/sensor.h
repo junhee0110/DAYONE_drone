@@ -1,3 +1,11 @@
+// File Name : sensor.ino
+// Purpose : declare class gy86 to get sensor value
+// last edit : 2021-02-03
+// Author : Lee Junhee
+//------------- Edit log --------------------
+// 2020-01-20 Complete MPU6050 part
+// 2021-02-03 - Add Documentation
+
 #ifndef GY86_
 #define GY86_
 
