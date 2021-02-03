@@ -10,7 +10,9 @@
 
 
 #include "sensor.h"
+#include "config.h"
 
+#ifdef GY86_1
 void gy86::init(){
   // join I2C bus (I2Cdev library doesn't do this automatically)
   #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -135,7 +137,9 @@ float gy86::get_roll(){
 float gy86::get_head(){
   return heading;
 }
+#endif
 
+#ifdef GY86_2
 void gy86_2::init(){
   // join I2C bus (I2Cdev library doesn't do this automatically)
   #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -258,47 +262,5 @@ float gy86_2::get_roll(){
 
 float gy86_2::get_head(){
   return heading;
-=======
-int16_t balance::get_ax() {
-  return this->ax;
-}
-int16_t balance::get_ay() {
-  return this->ay;
-}
-int16_t balance::get_az() {
-  return this->az;
-}
 
-int16_t balance::get_gx() {
-  return this->gx;
-}
-int16_t balance::get_gy() {
-  return this->gy;
-}
-int16_t balance::get_gz() {
-  return this->gz;
-}
-
-int16_t balance::get_mx() {
-  return this->mx;
-}
-int16_t balance::get_my() {
-  return this->my;
-}
-int16_t balance::get_mz() {
-  return this->mz;
-}
-
-float balance::get_head() {
-  return this->heading;
-}
-
-float balance::get_alt() {
-  return this->altitude;
-}
-float balance::get_temp() {
-  return this->temperature;
-}
-float balance::get_press() {
-  return this->pressure;
-
+#endif

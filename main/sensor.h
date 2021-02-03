@@ -9,6 +9,7 @@
 #ifndef GY86_
 #define GY86_
 
+#include "config.h"
 #include "MS561101BA.h"
 #include "MPU6050_6Axis_MotionApps20.h"
 #include "I2Cdev.h"
@@ -21,6 +22,8 @@
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
 #include <Wire.h>
 #endif
+
+#ifdef GY86_1
 
 class gy86 : public MPU6050, public MS561101BA {
 
@@ -53,7 +56,9 @@ class gy86 : public MPU6050, public MS561101BA {
     float get_roll();
     float get_head();
 };
+#endif
 
+#ifdef GY86_2
 class gy86_2{
   private:
     private:
@@ -88,5 +93,6 @@ class gy86_2{
     float get_roll();
     float get_head();
 };
+#endif
 
 #endif
