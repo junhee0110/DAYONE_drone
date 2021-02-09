@@ -7,6 +7,7 @@
 #define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
 
 gy86 GY86;
+motor_control m1 = motor_control(5,0);
 
 void setup() {
   // put your setup code here, to run once:

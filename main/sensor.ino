@@ -1,6 +1,6 @@
 // File Name : sensor.ino
+// Last Update : 2021-02-03
 // Purpose : defines class gy86 to get sensor value
-// last edit : 2021-02-03
 // Author : Lee Junhee
 //------------- Edit log --------------------
 // 2020-01-20 - Complete MPU6050 part
