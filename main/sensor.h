@@ -1,5 +1,5 @@
 // File Name : sensor.ino
-// Purpose : declare class gy86 to get sensor value
+// Purpose : defines class gy86 to get sensor value
 // last edit : 2021-02-03
 // Author : Lee Junhee
 //------------- Edit log --------------------
