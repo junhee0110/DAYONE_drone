@@ -1,36 +1,37 @@
 #ifndef PID_AXIS
 #define PID_AXIS
-class axis {
+
+class PID {
   
   private:
-    float kP;
-    float kI;
-    float kD;
-    float dt = 0.0;
-    float t_tmp = 0.0;
-    float e_tmp = 0.0;
-    float err = 0.0;
-    float inte = 0.0;
-    float diff = 0.0;
-    float PID_val = 0.0;
-    float target = 0.0;
-    float current = 0.0;
+    float kP1, kP2, kI, kD;
+    float angle_target, angle_current, rate_current;
+    float dt;
 
   public:
-    axis(float kP, float kI, float kD);
-    void set_target(float target);
-    void set_current(float current);
-    float cal_err();
-    float cal_dt();
+    PID(float kP1, float kP2, float kI, float kD);
+    
+    void set_angle_target(float angle_target);
+    void set_angle_current(float angle_current);
+    void set_rate_current(float rate_current);
+    void set_const(float kP1, float kP2, float kI, float kD);
+    void set_dt(float dt);
+
+    float cal_angle_err();
+    float P_angle();
+    float cal_rate_err();
     float cal_inte();
     float cal_diff();
     float cal_PID();
+
     float get_PID();
-    float get_kP();
+    float get_kP1();
+    float get_kP2();
     float get_kI();
     float get_kD();
-    float get_err();
-    void set_const(float kP, float kI, float kD);
+    float get_angle_err();
+
+        
 };
 
 #endif

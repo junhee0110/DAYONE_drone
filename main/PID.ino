@@ -1,83 +1,43 @@
 #include "PID.h"
 #include "config.h"
 
-//------------------------------------------ㅡAXIS-------------------------------------
-
-axis::axis(float kP, float kI, float kD) {
-  this -> kP = kP;
+PID::PID(float kP1, float kP2, float kI, float kD)
+{
+  this -> kP1 = kP1;
+  this -> kP2 = kP2;
   this -> kI = kI;
   this -> kD = kD;
 }
 
-void axis::set_target(float target){
-  this->target = target;
-}
-void axis::set_current(float current){
-  this->current = current;
+void PID::set_angle_target(float angle_target)
+{
+  this -> angle_target = angle_target;
 }
 
-float axis::cal_err() {
-  this -> e_tmp = this -> err;
-  this -> err = this -> target - this -> current;
-
+void PID::set_angle_current(float angle_current)
+{
+  this -> angle_current = angle_current;
 }
 
-#ifdef FLEX_T
-float axis::cal_dt() {
-  float t = millis() / 1000;
-
-  this -> dt = t - (this -> t_tmp);
-  this -> t_tmp = t;
-
-  return this -> dt;
-}
-#endif
-
-#ifdef FIX_T
-float axis::cal_dt() {
-  this -> dt = FIX_T / 1000
-
-  return this -> dt;
-  }
-#endif
-
-float axis::cal_inte() {
-  this -> inte = (this -> err) * (this -> dt);
-  return this -> inte;
+void PID::set_rate_current(float rate_current)
+{
+  this -> rate_current = rate_current;
 }
 
-float axis::cal_diff() {
-  this -> diff  = ((this -> err) - (this -> e_tmp)) / (this -> dt);
-  return this -> diff;
-}
-
-float axis::cal_PID() {
-  this-> PID_val = (this->kP) * (this->cal_err()) + (this->kI) * (this->cal_inte()) + (this->kD) * (this->cal_diff());
-  return this -> PID_val;
-}
-
-float axis::get_PID(){
-  return this->PID_val;
-}
-
-float axis::get_kP(){
-  return this->kP;
-}
-
-float axis::get_kI(){
-  return this->kI;
-}
-
-float axis::get_kD(){
-  return this->kD;
-}
-
-float axis::get_err(){
-  return this->err;
-}
-
-void axis::set_const(float kP, float kI, float kD){
-  this -> kP = kP;
+void PID::set_const(float kP1, float kP2, float kI, float kD)
+{
+  this -> kP1 = kP1;
+  this -> kP2 = kP2;
   this -> kI = kI;
   this -> kD = kD;
+}
+
+void PID::set_dt(float dt)
+{
+  this -> dt = dt;
+}
+
+float PID::cal_angle_err()
+{
+  
 }
