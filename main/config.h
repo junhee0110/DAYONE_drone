@@ -15,5 +15,7 @@
 
 //---------------------
 
+#define PID_NUM 3
+#define MOTOR_NUM 4
 
 #endif
