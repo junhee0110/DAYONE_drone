@@ -18,13 +18,18 @@ class control
 {
 
     private:
-        PID PID_instance[PID_NUM]; //PID instances
-        motor motor_instance[MOTOR_NUM];
+        PID * PID_instance[PID_NUM]; //PID instances
+        motor * motor_instance[MOTOR_NUM];
         gy86 sensor;
 
-        float sampling_time; // dt
+        float current[PID_NUM];
+        float current_rate[PID_NUM];
+
+        float sampling_time = 0.0f; // dt
+        float now_time, ex_time = 0.0f;
 
     public:
+        control(PID * PID_array, motor * motor_array); //Initializer
         void init(); // Initialize Instance
         void cal_PID(); // Caluculate all PID values of each PID instance 
         void cal_Output(); // Calculate Output of each motor using PID value

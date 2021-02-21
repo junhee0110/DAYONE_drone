@@ -12,12 +12,18 @@ class motor: public Servo{
     private:
         int output;
         int pinNum;
+        int motor_num;
+        bool x_axis, y_axis, z_axis;
 
     public:
-        motor(int pin);
+        motor(int pin, int motor_num);
         void init();
         void rotate(int value);
 };
 
 //range of writeSignal : 700~2000
+//Motor Number Diagram
+// ^ y
+//  1(01)   0(00)  > x
+//  2(10)   3(11)
 #endif
