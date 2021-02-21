@@ -96,3 +96,8 @@ float PID::get_kD() //get kD value (to communication)
 {
   return kD;
 }
+
+int PID::get_num()
+{
+  return number;
+}

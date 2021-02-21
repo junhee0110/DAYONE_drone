@@ -14,10 +14,23 @@ motor::motor(int pin, int motor_num){
 
 }
 
-void motor::init(){
+void motor::init()
+{
     Servo::attach(pinNum);
 }
 
-void motor::rotate(int value){
-    Servo::writeMicroseconds(value);
+void motor::rotate()
+{
+    Servo::writeMicroseconds(output);
+}
+
+void motor::set_output(int val)
+{
+    output = val;
+}
+
+bool * motor::get_axis()
+{
+    bool return_array[3] = {x_axis, y_axis, z_axis};
+    return return_array;
 }

@@ -29,6 +29,8 @@ class control
         float now_time, ex_time = 0.0f;
         
 
+        int thrust;
+
     public:
         control(PID * PID_array, motor * motor_array); //Initializer
         void init(); // Initialize Instance

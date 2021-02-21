@@ -38,7 +38,45 @@ void control::cal_PID()
 
 void control::cal_Output()
 {
+    // Calculate OUTPUT
+    for(int i = 0 ; i < MOTOR_NUM ; i++)
+    {
+        int temp_output = 0;
+        for(int j = 0 ; j < PID_NUM ; j++)
+        {   
+            switch (PID_instance[j]->get_num())
+            {
+            case 0: //YAW
+                temp += (motor_instance[i]->get_axis()[2] ? PID_instance[j]->get_PID() : - PID_instance[j]->get_PID());
+                break;
+            
+            case 1: //PITCH
+                temp += (motor_instance[i]->get_axis()[1] ? PID_instance[j]->get_PID() : - PID_instance[j]->get_PID());
+                break;
 
+            case 2: //ROLL
+                temp += (motor_instance[i]->get_axis()[0] ? PID_instance[j]->get_PID() : - PID_instance[j]->get_PID());
+                break;
+
+            case 3: //X
+                temp += (motor_instance[i]->get_axis()[1] ? PID_instance[j]->get_PID() : - PID_instance[j]->get_PID());
+                break;
+
+            case 4: //Y
+                temp += (motor_instance[i]->get_axis()[0] ? PID_instance[j]->get_PID() : - PID_instance[j]->get_PID());
+                break;
+
+            case 5: //Z
+                temp += PID_instance[j]->get_PID();
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        motor_instance[i]->set_output(thrust + temp_output);
+    }
 }
 
 void control::get_sensor()
