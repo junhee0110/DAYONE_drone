@@ -12,6 +12,9 @@
 class PID {
   
   private:
+    //Identifier
+    int number; // YAW, PITCH, ROLL, X, Y, Z
+
     float kP1, kP2, kI, kD; // PID Constants
     float angle_target, angle_current, rate_target; // values for calculate error
     float dt; // sampling time
@@ -40,6 +43,7 @@ class PID {
     float get_kP2();
     float get_kI();
     float get_kD();
+    int get_num(;)
    
 };
 
