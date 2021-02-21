@@ -9,13 +9,13 @@
 #include "config.h"
 #include "control.h"
 
-control::control(PID * PID_array[PID_NUM], motor * motor_array(MOTOR_NUM))
+control::control(PID * PID_array[PID_NUM], motor * motor_array[MOTOR_NUM])
 {
     PID_instance = PID_array;
     motor_instance = motor_array;
 }
 
-void controll::init()
+void control::init()
 {
     //Init Motors
     for(int i = 0 ; i < MOTOR_NUM ; i++)
@@ -28,7 +28,8 @@ void controll::init()
 }
 
 void control::cal_PID()
-{
+{   
+    
     for(int i = 0 ; i < PID_NUM ; i++)
     {
         PID_instance[i]->cal_PID();
@@ -42,16 +43,16 @@ void control::cal_Output()
 
 void control::get_sensor()
 {
-    sensor.get_dmp();
+    sensor.get_dmp(); //roll,pitch,yaw 받아왔음 단, yaw는 heading으로
+    current[0] = sensor.get_roll();
+    current[1] = sensor.get_pitch();
+    current[2] = sensor.get_heading();
+    current_rate[0] = sensor.getAccelerationX();
+    current_rate[1] = sensor.getAccelerationY();
+    current_rate[2] = sensor.getAccelerationZ();
 }
 
-void control::set_current()
-{
-    for(int i = 0 ; i < PID_NUM ; i ++)
-    {
-        
-    }
-}
+
 
 void control::cal_sampling_time()
 {

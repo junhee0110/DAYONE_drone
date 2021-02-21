@@ -43,6 +43,7 @@ class gy86 : public MPU6050, public MS561101BA {
     float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
     int16_t mx, my, mz;
     float heading;
+    float g[3];
 
     // packet structure for InvenSense teapot demo
     uint8_t teapotPacket[14] = { '$', 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0x00, 0x00, '\r', '\n' };
