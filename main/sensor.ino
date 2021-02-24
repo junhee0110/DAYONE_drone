@@ -139,16 +139,6 @@ float gy86::get_head(){
 }
 #endif
 
-void gy86::get_accer(){
-  MPU6050::getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-  g[0] = gx;
-  g[1] = gy;
-  g[2]= gz;
-}
-
-float * gy86::send_accer(){
-  return g;
-}
 
 #ifdef GY86_2
 void gy86_2::init(){

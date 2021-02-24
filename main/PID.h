@@ -43,7 +43,7 @@ class PID {
     float get_kP2();
     float get_kI();
     float get_kD();
-    int get_num(;)
+    int get_num();
    
 };
 

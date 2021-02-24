@@ -14,7 +14,6 @@ class motor: public Servo{
         int pinNum;
         int motor_num;
         bool x_axis, y_axis, z_axis;
-        int output;
 
     public:
         motor(int pin, int motor_num);
