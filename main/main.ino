@@ -4,11 +4,13 @@
 #include "control.h"
 #include "motor.h"
 #include "sensor.h"
-#define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
-#define LED_PIN 13 // (Arduino is 13, Teensy is 11, Teensy++ is 6)
+#include "pinNum.h"
 
 PID * PID_array[] = {new PID(0), new PID(1), new PID(2)};
-motor * motor_array[] = {new motor(5, 0), new motor(6, 1), new motor(9, 2), new motor(10, 3)};
+motor * motor_array[] = { new motor(MOTOR_ONE, 0)
+                        , new motor(MOTOR_TWO, 1)
+                        , new motor(MOTOR_THREE, 2)
+                        , new motor(MOTOR_FOUR, 3)};
 
 control ctrl(PID_array, motor_array);
 
