@@ -9,24 +9,25 @@
 #include "PID.h"
 #include "config.h"
 
-PID::PID(float kP1, float kP2, float kI, float kD) // Constructor
+PID::PID(int num, float kP1 = 1.0f, float kP2 = 1.0f, float kI = 1.0f, float kD = 1.0f) // Constructor
 { 
   //Initialize PID Constants
   this -> kP1 = kP1;
   this -> kP2 = kP2;
   this -> kI = kI;
   this -> kD = kD;
+  number = num;
 
   //Initialize previous rate error
   rate_err_tmp = 0.0f;
 }
 
-void PID::set_angle_target(float angle_target) // Set angle_target (From communication)
+void PID::set_first_target(float angle_target) // Set angle_target (From communication)
 {
   this -> angle_target = angle_target;
 }
 
-void PID::set_angle_current(float angle_current) // Set angle_current (From sensor)
+void PID::set_first_current(float angle_current) // Set angle_current (From sensor)
 {
   this -> angle_current = angle_current;
 }

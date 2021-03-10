@@ -22,11 +22,11 @@ class PID {
     float P_first, I_val, PID_val; // PID values
 
   public:
-    PID(float kP1, float kP2, float kI, float kD); //Constructor
+    PID(int num, float kP1 = 1.0f, float kP2 = 1.0f, float kI = 1.0f, float kD = 1.0f); //Constructor
     
     // Set Method (From other instance)
-    void set_angle_target(float angle_target);
-    void set_angle_current(float angle_current);
+    void set_first_target(float angle_target);
+    void set_first_current(float angle_current);
     void set_rate_target(float rate_target);
     void set_const(float kP1, float kP2, float kI, float kD);
     void set_dt(float dt);
@@ -44,7 +44,6 @@ class PID {
     float get_kI();
     float get_kD();
     int get_num();
-   
 };
 
 #endif
