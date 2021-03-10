@@ -39,6 +39,9 @@ class control
         void cal_sampling_time(); // Calculate Sampling Time by using milis(), second unit
         void cal_PID(); // Caluculate all PID values of each PID instance 
         void cal_Output(); // Calculate Output of each motor using PID value
+        //get_communication
+        //set_PID_const
+        //set_target
 
         void ctrl(); //Do 1 cycle
 
